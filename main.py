@@ -32,7 +32,7 @@ class AppHayla(App):
         if ok:
             self.user = username.strip()
             self.root.current = "home"
-        return ok  # asdasdasdsa
+        return ok
 
     
     def logout(self):
