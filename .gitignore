@@ -1,0 +1,7 @@
+.venv
+.vscode
+old
+.env
+*.xlsm
+*.xlsx
+*.csv
