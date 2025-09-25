@@ -17,32 +17,36 @@ class Root(ScreenManager):
     pass
 
 
-class MyKivyApp(App):
+class AppHayla(App):
     # super-simple auth state (replace with real service later)
     is_authenticated = BooleanProperty(False)
     user = StringProperty("")
 
+    
     def login(self, username: str, password: str) -> bool:
+        
         # TODO: replace with real auth (API call, DB, etc.)
         ok = bool(username.strip()) and bool(password.strip())
         self.is_authenticated = ok
+        
         if ok:
             self.user = username.strip()
             self.root.current = "home"
         return ok
 
+    
     def logout(self):
         self.is_authenticated = False
         self.user = ""
         self.root.current = "login"
+    
         
     def build(self):
         sm = Root(transition=NoTransition())
-        # sm.add_widget(LoginScreen(name="login"))
-        # sm.add_widget(HomeScreen(name="home"))
         sm.current = "login"
         return sm
 
 
 if __name__ == "__main__":
-    MyKivyApp().run()
+    AppHayla().run()
+    
