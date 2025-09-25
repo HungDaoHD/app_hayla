@@ -8,6 +8,8 @@ from app.screens.login import LoginScreen
 from app.screens.home import HomeScreen
 from app.widgets.nav import NavBar
 
+
+
 Builder.load_file("app.kv")
 
 
