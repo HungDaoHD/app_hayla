@@ -1,5 +1,7 @@
+.buildozer
 .venv
 .vscode
+bin
 old
 .env
 *.xlsm
