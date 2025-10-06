@@ -43,7 +43,7 @@ Builder.load_file("app.kv")
 #             6: get_color_from_hex('#f25238'),
 #         }
 #     },
-#     }
+# }
 
 
 class Theme(EventDispatcher):
@@ -52,7 +52,7 @@ class Theme(EventDispatcher):
     surface    = ColorProperty([1, 1, 1, 1])   # cards/panels
     text       = ColorProperty([0.95, 0.95, 0.96, 1])   # primary text
     text_muted = ColorProperty([0.75, 0.75, 0.78, 1])   # secondary text
-    accent     = ColorProperty(get_color_from_hex('#008F37'))   # brand color
+    accent     = ColorProperty(get_color_from_hex("#008F37"))   # brand color
     danger     = ColorProperty([0.95, 0.27, 0.27, 1])
 
     font_regular = StringProperty("Inter")

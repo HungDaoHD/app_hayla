@@ -3,6 +3,8 @@
 #:import sp kivy.metrics.sp
 
 
+
+
 <Label>:
     font_name: app.theme.font_regular
     font_size: sp(app.theme.base_size_sp)
@@ -19,9 +21,22 @@
         Color:
             rgba: app.theme.accent
         RoundedRectangle:
-            radius: [12,]
+            radius: [5,]
             pos: self.pos
             size: self.size
+
+
+<TextInput>:
+    font_name: app.theme.font_regular
+    font_size: sp(app.theme.base_size_sp)
+    
+    background_normal: ''
+    background_active: ''
+    background_disabled_normal: ''
+    background_disabled_active: ''
+    
+    
+
 
 <Root>:
     LoginScreen:
@@ -75,6 +90,11 @@
             size_hint_y: None
             height: dp(44)
             multiline: False
+
+
+
+
+
 
         Label:
             id: error_lbl
@@ -163,3 +183,4 @@
         size_hint_x: None
         width: dp(90)
         on_release: app.logout()
+        
