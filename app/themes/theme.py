@@ -16,22 +16,22 @@ LabelBase.register(
 
 
 
-# self.themes = {
-#     'light': {
-#         'bg': get_color_from_hex('#F7F5E8'),
-#         'text': get_color_from_hex('#434343'),
-#         'button': get_color_from_hex('#008F37'),
-#         'weekday_color': {
-#             0: get_color_from_hex('#434343'),
-#             1: get_color_from_hex('#434343'),
-#             2: get_color_from_hex('#434343'),
-#             3: get_color_from_hex('#434343'),
-#             4: get_color_from_hex('#434343'),
-#             5: get_color_from_hex('#02a2e6'),
-#             6: get_color_from_hex('#f25238'),
-#         }
-#     },
-# }
+themes = {
+    'light': {
+        'bg': get_color_from_hex('#F7F5E8'),
+        'text': get_color_from_hex('#434343'),
+        'button': get_color_from_hex('#008F37'),
+        'weekday_color': {
+            0: get_color_from_hex('#434343'),
+            1: get_color_from_hex('#434343'),
+            2: get_color_from_hex('#434343'),
+            3: get_color_from_hex('#434343'),
+            4: get_color_from_hex('#434343'),
+            5: get_color_from_hex('#02a2e6'),
+            6: get_color_from_hex('#f25238'),
+        }
+    },
+}
 
 
 class Theme(EventDispatcher):
@@ -56,7 +56,8 @@ class Theme(EventDispatcher):
         self.text_muted = [0.35, 0.35, 0.40, 1]
         self.accent     = get_color_from_hex('#008F37')
 
-
+        
+    
     
     def set_dark(self):
         self.bg         = [0.07, 0.07, 0.09, 1]
@@ -64,3 +65,5 @@ class Theme(EventDispatcher):
         self.text       = [0.95, 0.95, 0.96, 1]
         self.text_muted = [0.75, 0.75, 0.78, 1]
         self.accent     = [0.31, 0.53, 0.96, 1]
+        
+    
