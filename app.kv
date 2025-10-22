@@ -14,17 +14,21 @@
 <Button>:
     font_name: app.theme.font_bold
     font_size: sp(app.theme.base_size_sp)
-    background_color: 0,0,0,0
-    color: app.theme.surface
+    background_normal: ''         # use your canvas bg
+    background_down: ''
+    background_color: 0, 0, 0, 0
+    
+    
+    color: app.theme.secondary
     
     canvas.before:
         Color:
-            rgba: app.theme.accent
+            rgba: app.theme.primary
         RoundedRectangle:
             radius: [5,]
             pos: self.pos
             size: self.size
-
+ 
 
 <TextInput>:
     font_name: app.theme.font_regular
@@ -92,10 +96,6 @@
             multiline: False
 
 
-
-
-
-
         Label:
             id: error_lbl
             text: ""
@@ -116,22 +116,44 @@
 
 
 <HomeScreen>:
+    padding: dp(16)
+    spacing: dp(12)
+
+
     # Guard: bounce back to login if not authed
     on_pre_enter:
         app.is_authenticated or setattr(app.root, "current", "login")
 
+    canvas.before:
+        Color:
+            rgba: app.theme.bg
+        
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
     BoxLayout:
         orientation: "vertical"
+        
         # Top navigation bar
         NavBar:
             size_hint_y: None
             height: dp(56)
+
 
         # Page content
         BoxLayout:
             orientation: "vertical"
             padding: dp(16)
             spacing: dp(12)
+
+            canvas.before:
+                Color:
+                    rgba: app.theme.warning
+                
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
 
             Label:
                 text: f"Hello, {app.user or 'Guest'} 👋"
@@ -151,9 +173,11 @@
     spacing: dp(8)
     size_hint_y: None
     height: dp(56)
+
     canvas.before:
         Color:
-            rgba: (0.12, 0.12, 0.12, 1) if 0 else (0.15, 0.15, 0.18, 1)
+            rgba: app.theme.secondary
+        
         Rectangle:
             pos: self.pos
             size: self.size
