@@ -2,209 +2,23 @@
 #:import dp kivy.metrics.dp
 #:import sp kivy.metrics.sp
 
-
-
-
-<Label>:
-    font_name: app.theme.font_regular
-    font_size: sp(app.theme.base_size_sp)
-    color: app.theme.text
-
-
-<Button>:
-    font_name: app.theme.font_bold
-    font_size: sp(app.theme.base_size_sp)
-    background_normal: ''         # use your canvas bg
-    background_down: ''
-    background_color: 0, 0, 0, 0
-    
-    
-    color: app.theme.secondary
-    
-    canvas.before:
-        Color:
-            rgba: app.theme.primary
-        RoundedRectangle:
-            radius: [5,]
-            pos: self.pos
-            size: self.size
- 
-
-<TextInput>:
-    font_name: app.theme.font_regular
-    font_size: sp(app.theme.base_size_sp)
-    
-    background_normal: ''
-    background_active: ''
-    background_disabled_normal: ''
-    background_disabled_active: ''
-    
-    
+#:include assets/elements.kv
 
 
 <Root>:
     LoginScreen:
         name: "login"
+    
     HomeScreen:
         name: "home"
 
-<LoginScreen>:
-    BoxLayout:
-        orientation: "vertical"
-        padding: dp(16)
-        spacing: dp(12)
-        
-        canvas.before:
-            Color:
-                rgba: app.theme.bg
-            
-            Rectangle:
-                pos: self.pos
-                size: self.size
 
-
-        Button:
-            text: "Toggle Light/Dark"
-            size_hint_y: None
-            height: dp(48)
-            on_release:
-                (app.theme.set_light() if app._mode=="dark" else app.theme.set_dark()); \
-                app._mode = "light" if app._mode=="dark" else "dark"
-
-
-        Widget:  # spacer
-        
-        Label:
-            text: "Welcome"
-            font_size: "24sp"
-            size_hint_y: None
-            height: dp(32)
-
-        TextInput:
-            id: username
-            hint_text: "Username"
-            size_hint_y: None
-            height: dp(44)
-            multiline: False
-
-        TextInput:
-            id: password
-            hint_text: "Password"
-            password: True
-            size_hint_y: None
-            height: dp(44)
-            multiline: False
-
-
-        Label:
-            id: error_lbl
-            text: ""
-            color: 1,0,0,1
-            size_hint_y: None
-            height: dp(20)
-
-        Button:
-            text: "Log in"
-            size_hint_y: None
-            height: dp(48)
-            on_release: root.try_login(username.text, password.text)
-
-        Widget:  # spacer
 
         
 
 
 
-<HomeScreen>:
-    padding: dp(16)
-    spacing: dp(12)
 
 
-    # Guard: bounce back to login if not authed
-    on_pre_enter:
-        app.is_authenticated or setattr(app.root, "current", "login")
 
-    canvas.before:
-        Color:
-            rgba: app.theme.bg
-        
-        Rectangle:
-            pos: self.pos
-            size: self.size
-
-    BoxLayout:
-        orientation: "vertical"
-        
-        # Top navigation bar
-        NavBar:
-            size_hint_y: None
-            height: dp(56)
-
-
-        # Page content
-        BoxLayout:
-            orientation: "vertical"
-            padding: dp(16)
-            spacing: dp(12)
-
-            canvas.before:
-                Color:
-                    rgba: app.theme.warning
-                
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
-
-            Label:
-                text: f"Hello, {app.user or 'Guest'} 👋"
-                font_size: "20sp"
-                size_hint_y: None
-                height: dp(28)
-
-            Label:
-                text: "This is your Home page content area."
-                halign: "left"
-                valign: "middle"
-                text_size: self.size
-
-<NavBar@BoxLayout>:
-    # You can also use the Python class; this KV template keeps styling centralized
-    padding: dp(12)
-    spacing: dp(8)
-    size_hint_y: None
-    height: dp(56)
-
-    canvas.before:
-        Color:
-            rgba: app.theme.secondary
-        
-        Rectangle:
-            pos: self.pos
-            size: self.size
-
-    Label:
-        text: "My App"
-        bold: True
-        size_hint_x: 1
-        halign: "left"
-        valign: "middle"
-        text_size: self.size
-
-    Button:
-        text: "Home"
-        size_hint_x: None
-        width: dp(90)
-        on_release: app.root.current = "home"
-
-    Button:
-        text: "Settings"
-        size_hint_x: None
-        width: dp(90)
-        on_release: app.root.current = "home"  # replace with "settings" if/when you add it
-
-    Button:
-        text: "Logout"
-        size_hint_x: None
-        width: dp(90)
-        on_release: app.logout()
         

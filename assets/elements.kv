@@ -1,0 +1,38 @@
+#:kivy 2.3.0
+#:import dp kivy.metrics.dp
+#:import sp kivy.metrics.sp
+
+
+
+<Label>:
+    font_name: app.theme.font_regular
+    font_size: sp(app.theme.base_size_sp)
+    color: app.theme.text
+
+
+<Button>:
+    font_name: app.theme.font_bold
+    font_size: sp(app.theme.base_size_sp)
+    background_normal: ''
+    background_down: ''
+    background_color: 0, 0, 0, 0
+    
+    color: app.theme.secondary
+    
+    canvas.before:
+        Color:
+            rgba: app.theme.primary
+        RoundedRectangle:
+            radius: [5,]
+            pos: self.pos
+            size: self.size
+ 
+
+<TextInput>:
+    font_name: app.theme.font_regular
+    font_size: sp(app.theme.base_size_sp)
+    
+    background_normal: ''
+    background_active: ''
+    background_disabled_normal: ''
+    background_disabled_active: ''

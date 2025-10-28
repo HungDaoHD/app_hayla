@@ -1,0 +1,58 @@
+#:kivy 2.3.0
+#:import dp kivy.metrics.dp
+#:import sp kivy.metrics.sp
+
+
+
+<LoginScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(16)
+        spacing: dp(12)
+        
+        canvas.before:
+            Color:
+                rgba: app.theme.bg
+            
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Widget:
+        
+        Label:
+            text: "Welcome to Haylà"
+            font_size: "32sp"
+            size_hint_y: None
+            height: dp(32)
+            color: app.theme.primary
+
+        TextInput:
+            id: username
+            hint_text: "Username"
+            size_hint_y: None
+            height: dp(44)
+            multiline: False
+
+        TextInput:
+            id: password
+            hint_text: "Password"
+            password: True
+            size_hint_y: None
+            height: dp(44)
+            multiline: False
+
+        Label:
+            id: error_lbl
+            text: ""
+            color: 1,0,0,1
+            size_hint_y: None
+            height: dp(20)
+
+        Button:
+            text: "Log in"
+            size_hint_y: None
+            height: dp(48)
+            on_release: root.try_login(username.text, password.text)
+        
+        Widget:

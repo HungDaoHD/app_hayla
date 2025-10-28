@@ -1,0 +1,90 @@
+#:kivy 2.3.0
+#:import dp kivy.metrics.dp
+#:import sp kivy.metrics.sp
+
+
+<HomeScreen>:
+    padding: dp(16)
+    spacing: dp(12)
+
+    canvas.before:
+        Color:
+            rgba: app.theme.bg
+        
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+
+    # Page content
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(16)
+        spacing: dp(12)
+
+        canvas.before:
+            Color:
+                rgba: app.theme.bg
+            
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Hello, {app.user or 'Guest'}"
+            font_size: "20sp"
+            size_hint_y: None
+            height: dp(28)
+        
+        Label:
+            text: "This is your Home page content area."
+            halign: "left"
+            valign: "middle"
+            text_size: self.size
+
+
+
+
+
+
+
+    # # Guard: bounce back to login if not authed
+    # on_pre_enter:
+    #     app.is_authenticated or setattr(app.root, "current", "login")
+
+    
+
+    # BoxLayout:
+    #     orientation: "vertical"
+        
+    #     # Top navigation bar
+    #     NavBar:
+    #         size_hint_y: None
+    #         height: dp(56)
+
+
+    #     # Page content
+    #     BoxLayout:
+    #         orientation: "vertical"
+    #         padding: dp(16)
+    #         spacing: dp(12)
+
+    #         canvas.before:
+    #             Color:
+    #                 rgba: app.theme.warning
+                
+    #             Rectangle:
+    #                 pos: self.pos
+    #                 size: self.size
+
+    #         Label:
+    #             text: f"Hello, {app.user or 'Guest'} 👋"
+    #             font_size: "20sp"
+    #             size_hint_y: None
+    #             height: dp(28)
+
+    #         Label:
+    #             text: "This is your Home page content area."
+    #             halign: "left"
+    #             valign: "middle"
+    #             text_size: self.size

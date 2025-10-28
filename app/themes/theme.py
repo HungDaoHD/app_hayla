@@ -12,10 +12,6 @@ LabelBase.register(
 )
 
 
-
-
-
-
 # themes = {
 #     'light': {
 #         'bg': get_color_from_hex('#F7F5E8'),

@@ -1,0 +1,40 @@
+<NavBar@BoxLayout>:
+    # You can also use the Python class; this KV template keeps styling centralized
+    padding: dp(12)
+    spacing: dp(8)
+    size_hint_y: None
+    height: dp(56)
+
+    canvas.before:
+        Color:
+            rgba: app.theme.secondary
+        
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    Label:
+        text: "My App"
+        bold: True
+        size_hint_x: 1
+        halign: "left"
+        valign: "middle"
+        text_size: self.size
+
+    Button:
+        text: "Home"
+        size_hint_x: None
+        width: dp(90)
+        on_release: app.root.current = "home"
+
+    Button:
+        text: "Settings"
+        size_hint_x: None
+        width: dp(90)
+        on_release: app.root.current = "home"  # replace with "settings" if/when you add it
+
+    Button:
+        text: "Logout"
+        size_hint_x: None
+        width: dp(90)
+        on_release: app.logout()

@@ -12,8 +12,12 @@ PBKDF_ITER = 200_000
 SALT_LEN = 16
 KEY_LEN = 32
 
+
+
 def _pbkdf_hash(password: str, salt: bytes) -> bytes:
     return hashlib.pbkdf2_hmac(PBKDF_ALGO, password.encode("utf-8"), salt, PBKDF_ITER, dklen=KEY_LEN)
+
+
 
 def hash_password(password: str) -> Dict[str, str]:
     salt = os.urandom(SALT_LEN)
@@ -26,6 +30,8 @@ def hash_password(password: str) -> Dict[str, str]:
         "digest": PBKDF_ALGO,
     }
 
+
+
 def verify_password(password: str, stored: Dict[str, str]) -> bool:
     if stored.get("algo") != "pbkdf2":
         return False
@@ -33,6 +39,8 @@ def verify_password(password: str, stored: Dict[str, str]) -> bool:
     expected = base64.b64decode(stored["hash"])
     test = _pbkdf_hash(password, salt)
     return hmac.compare_digest(test, expected)
+
+
 
 # ---- Config loader ----
 def _read_db_config():
@@ -47,11 +55,15 @@ def _read_db_config():
         raise ValueError("config.ini missing [db] uri or name")
     return uri, name
 
+
+
 @dataclass
 class AuthService:
     client: MongoClient
     db_name: str
 
+    
+    
     @classmethod
     def from_config(cls) -> "AuthService":
         uri, name = _read_db_config()
@@ -60,16 +72,22 @@ class AuthService:
         svc._ensure_indexes()
         return svc
 
+    
+    
     # Collections
     @property
     def users(self):
         return self.client[self.db_name]["users"]
 
+    
+    
     def _ensure_indexes(self):
         # unique on username and email
         self.users.create_index([("username", ASCENDING)], unique=True)
         self.users.create_index([("email", ASCENDING)], unique=True, sparse=True)
 
+    
+    
     # --- API ---
     def register_user(self, *, username: str, email: Optional[str], password: str) -> str:
         doc = {
@@ -86,6 +104,8 @@ class AuthService:
             key = "username" if "username" in str(e) else "email"
             raise ValueError(f"{key.capitalize()} already exists")
 
+    
+    
     def verify_user(self, *, identifier: str, password: str) -> Optional[Dict]:
         """identifier can be username or email"""
         q = {"$or": [
@@ -98,3 +118,7 @@ class AuthService:
         if verify_password(password, user["password"]):
             return {"username": user["username"], "email": user.get("email")}
         return None
+
+
+
+
